@@ -1,15 +1,19 @@
 import './App.css';
-import Titulo from './components/Titulo/Titulo';
 import NavBar from './components/NavBar/NavBar';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+import ContadorContainer from './components/ejemplos/ContadorContainer/ContadorContainer';
 
 function App() {
 
-  const saludo = "Hola mundo";
+  function saludando(){
+    alert("Saludos desde el componente App");
+  };
 
   return (
     <div>
       <NavBar />
-      <Titulo />
+      <ItemListContainer saludo="Bienvenidos a mi ecommerce" saludando={saludando} />
+      <ContadorContainer />
     </div>
   )
 }

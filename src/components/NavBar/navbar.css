@@ -1,11 +1,12 @@
 .navbar{
   display: flex;
+  justify-content: space-around;
   align-items: center;
   background-color: rgb(17, 17, 17);
 }
 
 .brand{
-  width: 10%;
+  width: 5%;
 }
 
 .brand-img{
