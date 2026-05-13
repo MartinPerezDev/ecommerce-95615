@@ -1,11 +1,8 @@
-const ItemListContainer = ({ saludo = "Este es un texto por defecto" , saludando }) => {
+const ItemListContainer = ({ saludo = "Este es un texto por defecto" }) => {
 
   return (
     <div>
       <h2 >{saludo}</h2>
-      {
-        saludando && <button onClick={saludando} >Clickeame</button>
-      }
     </div>
   )
 }

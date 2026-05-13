@@ -1,5 +1,5 @@
 import "./titulo.css";
-import banner from "../../img/react-banner.webp";
+import banner from "../../../img/react-banner.webp";
 
 const Titulo = () => {
 
