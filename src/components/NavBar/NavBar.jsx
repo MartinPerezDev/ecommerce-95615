@@ -7,7 +7,7 @@ const NavBar = () => {
   const categories = [
     {
       id: 1,
-      label: "Teclados"
+      label: "Streaming"
     },
     {
       id: 2,
@@ -15,7 +15,7 @@ const NavBar = () => {
     },
     {
       id: 3,
-      label: "Monitores"
+      label: "Auriculares"
     }
   ];
 
@@ -28,7 +28,7 @@ const NavBar = () => {
       <ul className="categories">
         {
           categories.map( (category) => (
-            <li key={category.id} >{category.label}</li>
+            <li key={category.id} className="category" >{category.label}</li>
           ))
         }
       </ul>
