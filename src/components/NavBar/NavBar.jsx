@@ -1,5 +1,6 @@
 import logo from "../../img/logo.png";
 import Cartwidget from "../CartWidget/Cartwidget";
+import { Link } from "react-router";
 import "./navbar.css";
 
 const NavBar = () => {
@@ -21,9 +22,9 @@ const NavBar = () => {
 
   return (
     <nav className="navbar">
-      <div className="brand">
+      <Link to="" className="brand">
         <img src={logo} className="brand-img" alt="" />      
-      </div>  
+      </Link>  
   
       <ul className="categories">
         {

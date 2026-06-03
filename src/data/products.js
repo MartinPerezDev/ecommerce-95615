@@ -66,3 +66,16 @@ export const getProducts = () => {
     }, 3000);
   });
 };
+
+export const getProductById = (productId) => {
+  return new Promise((resolve, reject)=> {
+    setTimeout(()=> {
+      const product = products.find((productData) => productData.id === productId );
+      if(!product){
+        reject("Producto no encontrado")
+      }else{
+        resolve(product);
+      }
+    }, 3000);
+  });
+};
