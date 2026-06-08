@@ -63,19 +63,19 @@ export const getProducts = () => {
       }else{
         resolve(products);
       }
-    }, 3000);
+    }, 1500);
   });
 };
 
 export const getProductById = (productId) => {
   return new Promise((resolve, reject)=> {
     setTimeout(()=> {
-      const product = products.find((productData) => productData.id === productId );
+      const product = products.find((productData) => productData.id === parseInt(productId) );
       if(!product){
         reject("Producto no encontrado")
       }else{
         resolve(product);
       }
-    }, 3000);
+    }, 1500);
   });
 };

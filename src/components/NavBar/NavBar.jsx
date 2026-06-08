@@ -1,6 +1,6 @@
 import logo from "../../img/logo.png";
 import Cartwidget from "../CartWidget/Cartwidget";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import "./navbar.css";
 
 const NavBar = () => {
@@ -8,15 +8,18 @@ const NavBar = () => {
   const categories = [
     {
       id: 1,
-      label: "Streaming"
+      label: "Streaming",
+      path: "streaming"
     },
     {
       id: 2,
-      label: "Mouse"
+      label: "Mouse",
+      path: "mouse"
     },
     {
       id: 3,
-      label: "Auriculares"
+      label: "Auriculares",
+      path: "auriculares"
     }
   ];
 
@@ -29,7 +32,7 @@ const NavBar = () => {
       <ul className="categories">
         {
           categories.map( (category) => (
-            <li key={category.id} className="category" >{category.label}</li>
+              <NavLink to={`/category/${category.path}`} className="category" key={category.id} >{category.label}</NavLink>
           ))
         }
       </ul>

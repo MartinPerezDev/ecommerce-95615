@@ -11,7 +11,7 @@ const Item = ({ product }) => {
       <div className="text-item-container">
         <p className="title-item">{product.name}</p>
         <p className="price-item">${product.price}</p>
-        <Link to="/detail">
+        <Link to={`/detail/${product.id}`}>
           <div className="button-item">MAS INFORMACION</div>
         </Link>
       </div>

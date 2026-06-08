@@ -1,0 +1,30 @@
+.itemdetail{
+  display: flex;
+  justify-content: center;
+}
+
+.img-container-itemdetail{
+  width: 50%;
+}
+
+.img-itemdetail{
+  width: 100% ;
+}
+
+.text-itemdetail{
+  width: 50%;
+}
+
+.title-itemdetail{
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.description-itemdetail{
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.price-itemdetail{
+  font-size: 25px;
+}
