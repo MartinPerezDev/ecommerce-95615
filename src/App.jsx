@@ -1,11 +1,14 @@
 import './App.css';
 import { RouterProvider } from 'react-router';
 import { router } from './router';
+import { CartProvider } from './context/CartContext';
 
 function App() {
 
   return (
-    <RouterProvider router={router} />
+    <CartProvider>
+      <RouterProvider router={router} />
+    </CartProvider>
   )
 }
 
