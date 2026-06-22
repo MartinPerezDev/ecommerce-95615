@@ -1,6 +1,7 @@
 import ItemCount from "../ItemCount/ItemCount";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
+import { Link } from "react-router";
 import "./itemdetail.css";
 
 const ItemDetail = ({ product }) => {
@@ -26,7 +27,7 @@ const ItemDetail = ({ product }) => {
         <p className="price-itemdetail">Precio: ${product.price}</p>
         {
           productIsInCart === true ?
-            (<button>Terminar mi compra</button>) :
+            (<Link to="/cart" >Terminar mi compra</Link>) :
             (<ItemCount stock={product.stock} addToCart={addToCart} />)
         }
       </div>
