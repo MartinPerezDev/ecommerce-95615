@@ -1,0 +1,22 @@
+.button-to-back{
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: rgb(207, 207, 207);
+  background-color: rgb(19, 19, 19);
+  padding: 5px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 150px;
+  padding: 5px 10px;
+  border: none;
+}
+
+.button-to-back:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 20px 4px rgba(255, 255, 255, 0.068);
+  -webkit-box-shadow: 0px 0px 20px 4px rgba(255, 255, 255, 0.075);
+}

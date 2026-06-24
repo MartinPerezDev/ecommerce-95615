@@ -1,26 +1,43 @@
 import { useState, useEffect } from "react";
-import { getProductById } from "../../data/products.js";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from "react-router";
+import Loading from "../Loading/Loading";
+import { doc, getDoc } from "firebase/firestore";
+import db from "../../db/db.js";
 
 const ItemDetailContainer = () => {
   const { productId } = useParams();
 
   const [product, setProduct] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const getProductById = async() => {
+    try {
+      const productRef = doc(db, "products", productId);
+      const dataDb = await getDoc(productRef);
+      const data = { id: dataDb.id, ...dataDb.data() };
+
+      setProduct(data);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   useEffect(() => {
-    getProductById(productId)
-      .then((data)=> {
-        setProduct(data);
-      })
-      .catch((error)=> {
-        setError(error);
-      })
+    setIsLoading(true);
+
+    getProductById();
   }, []);
 
-  if(error){
-    return(
+  if(isLoading === true) return <Loading />
+
+  if(error !== null) return <div>404 - {error}</div>
+
+  if (error) {
+    return (
       <div>Error - {error}</div>
     )
   }

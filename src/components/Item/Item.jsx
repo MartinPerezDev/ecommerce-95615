@@ -1,5 +1,6 @@
-import "./item.css";
 import { Link } from "react-router";
+import { IoIosArrowForward } from "react-icons/io";
+import "./item.css";
 
 const Item = ({ product }) => {
   return (
@@ -11,8 +12,9 @@ const Item = ({ product }) => {
       <div className="text-item-container">
         <p className="title-item">{product.name}</p>
         <p className="price-item">${product.price}</p>
-        <Link to={`/detail/${product.id}`}>
-          <div className="button-item">MAS INFORMACION</div>
+        <Link to={`/detail/${product.id}`} className="button-item">
+          <IoIosArrowForward />
+          <p>MAS INFORMACION</p>
         </Link>
       </div>
     </li>

@@ -27,7 +27,7 @@ const ItemDetail = ({ product }) => {
         <p className="price-itemdetail">Precio: ${product.price}</p>
         {
           productIsInCart === true ?
-            (<Link to="/cart" >Terminar mi compra</Link>) :
+            (<Link to="/cart" className="button-to-buy" >Terminar mi compra</Link>) :
             (<ItemCount stock={product.stock} addToCart={addToCart} />)
         }
       </div>
