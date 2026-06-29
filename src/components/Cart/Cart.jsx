@@ -38,6 +38,8 @@ const Cart = () => {
 
       <p>Precio total: ${totalPrice()} </p>
 
+      <Link to="/checkout">Ir a checkout</Link>
+
       <button className="button-to-delete-all" onClick={deleteCart}>
         <p>Vaciar carrito</p>
         <FaTrashAlt />
