@@ -14,6 +14,7 @@ const ItemDetailContainer = () => {
 
   const getProductById = async() => {
     try {
+      //Pasar esta funcionalidad a el archivo de firestore.js
       const productRef = doc(db, "products", productId);
       const dataDb = await getDoc(productRef);
       const data = { id: dataDb.id, ...dataDb.data() };

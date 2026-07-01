@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { CartContext } from "../../context/CartContext";
-import { collection, addDoc, writeBatch, doc, increment } from "firebase/firestore";
-import db from "../../db/db.js";
+import { createOrderWithStockUpdate } from "../../services/firestore.js";
+import { toast } from "react-toastify";
 
 const Checkout = () => {
   const [dataForm, setDataForm] = useState({
@@ -14,28 +14,6 @@ const Checkout = () => {
 
   const handleChangeInput = (event) => {
     setDataForm({ ...dataForm, [event.target.name]: event.target.value });
-    //console.log(event.target.name);
-    //console.log(event.target.value);
-  }
-
-  const uploadOrder = async (order) => {
-    const ordersRef = collection(db, "orders");
-    const response = await addDoc(ordersRef, order);
-
-    //guardamos el id de la orden generada
-    setOrderId(response.id);
-  };
-
-  const updateStock = async () => {
-    const batch = writeBatch(db);
-
-    cart.forEach((productCart)=> {
-      const productRef = doc(db, "products", productCart.id);
-
-      batch.update(productRef, { stock: increment( -productCart.quantity ) });
-    });
-
-    await batch.commit();
   }
 
   const handleSubmitForm = async (event) => {
@@ -48,14 +26,14 @@ const Checkout = () => {
     }
 
     try {
-      //actualizar el stock
-      await updateStock();
-      //subir la orden de compra
-      await uploadOrder(order);
-      //vaciamos el carrito de compra
+      const newOrderId = await createOrderWithStockUpdate(order, cart);
+
+      //si la orden salio bien, mostramos el id y vaciamos el carrito
+      setOrderId(newOrderId);
       deleteCart();
+      toast.success("Orden generada correctamente!");
     } catch (error) {
-      console.log(error);
+      toast.error(error.message);
     }
   };
 

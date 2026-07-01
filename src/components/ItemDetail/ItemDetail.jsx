@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router";
 import "./itemdetail.css";
+import { toast } from "react-toastify";
 
 const ItemDetail = ({ product }) => {
   const { addProductInCart, isInCart } = useContext(CartContext);
@@ -11,6 +12,7 @@ const ItemDetail = ({ product }) => {
     const newProduct = { ...product, quantity: count };
     //agregar el producto al carrito
     addProductInCart(newProduct);
+    toast.success("Producto agregado correctamente");
   };
 
   //evaluamos si el producto esta en el carrito
@@ -26,9 +28,11 @@ const ItemDetail = ({ product }) => {
         <p className="description-itemdetail">{product.description}</p>
         <p className="price-itemdetail">Precio: ${product.price}</p>
         {
-          productIsInCart === true ?
-            (<Link to="/cart" className="button-to-buy" >Terminar mi compra</Link>) :
-            (<ItemCount stock={product.stock} addToCart={addToCart} />)
+          product.stock < 1
+          ? <div> no hay stock </div>
+          : productIsInCart === true 
+          ? (<Link to="/cart" className="button-to-buy" >Terminar mi compra</Link>) 
+          : (<ItemCount stock={product.stock} addToCart={addToCart} />)
         }
       </div>
     </div>

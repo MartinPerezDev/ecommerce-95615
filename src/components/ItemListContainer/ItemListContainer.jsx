@@ -3,8 +3,7 @@ import ItemList from "../ItemList/ItemList";
 import Loading from "../Loading/Loading";
 import { useParams, useNavigate } from "react-router";
 import { IoIosArrowBack } from "react-icons/io";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import db from "../../db/db.js";
+import { getProductsDB } from "../../services/firestore.js";
 import "./itemlistcontainer.css";
 
 const ItemListContainer = ({ saludo = "Este es un texto por defecto" }) => {
@@ -17,46 +16,19 @@ const ItemListContainer = ({ saludo = "Este es un texto por defecto" }) => {
 
   const getProducts = async () => {
     try {
-      const productsRef = collection(db, "products");
-      const dataDb = await getDocs(productsRef);
-      const data = dataDb.docs.map((productDb) => {
-        return { id: productDb.id, ...productDb.data() };
-      });
+      setIsLoading(true);
 
-      setProducts(data);
+      const productsDB = await getProductsDB(category);
+      setProducts(productsDB);
     } catch (error) {
       setError(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
-  const getProductsByCategory = async () => {
-    try {
-      const productsRef = collection(db, "products");
-      const q = query(productsRef, where( "category", "==", category ));
-      const dataDb = await getDocs(q);
-      const data = dataDb.docs.map((productDb) => {
-        return { id: productDb.id, ...productDb.data() };
-      });
-
-      setProducts(data);
-    } catch (error) {
-      setError(error.message);
-    } finally {
+    } finally{
       setIsLoading(false);
     }
   }
 
   useEffect(() => {
-    setIsLoading(true);
-
-    if(category){
-      getProductsByCategory();
-    }else{
-      getProducts();
-    }
-
+    getProducts();
   }, [category]);
 
   if (isLoading === true) return <Loading />
